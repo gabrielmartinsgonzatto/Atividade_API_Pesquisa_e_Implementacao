@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,9 +11,16 @@
 
     <p id="advice">Clique no botão.</p>
 
-    <input type="button" value="Novo conselho" onclick="buscarConselho()"> <!--Futuramente haverá uma function para a api-->
+    <input type="button" value="Novo conselho" onclick="buscarConselho()"> 
 
-    <script src="conselho.json"></script>
+    <script>
+        async function buscarConselho() {
+            const response = await fetch('https://api.adviceslip.com/advice');
+            const data = await response.json();
+
+            document.getElementById('advice').textContent = data.slip.advice;
+        }
+    </script>
 
 </body>
 </html>
